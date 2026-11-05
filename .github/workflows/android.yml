@@ -23,3 +23,5 @@ jobs:
         run: buildozer android debug
         env:
           PIP_TIMEOUT: 600
+          ANDROID_HOME: ${{ github.workspace }}/.buildozer/android/platform/android-sdk
+          BUILDOZER_ACCEPT_SDK_LICENSE: 1
