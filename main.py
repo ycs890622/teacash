@@ -143,3 +143,4 @@ if __name__ == "__main__":
             w = csv.writer(f)
             w.writerow(["时间","商品","金额","类型"])
     TeaCashApp().run()
+ 
