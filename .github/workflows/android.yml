@@ -1,3 +1,9 @@
+name: 路径
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
 名字: 路径
 
 在:
