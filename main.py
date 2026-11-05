@@ -142,5 +142,5 @@ if __name__ == "__main__":
         with open(SALE_FILE, "w", newline="", encoding="utf-8-sig") as f:
             w = csv.writer(f)
             w.writerow(["时间","商品","金额","类型"])
-    TeaCashApp().run()
+    TeaCashApp().run() 
  
