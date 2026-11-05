@@ -4,31 +4,29 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
-名字: 路径
-
-在:
-推:
-分支: [主要的]
-名字-
-
-工作 
-名字query为空
+jobs:
+  build:
     runs-on: ubuntu-latest
-步骤:
-      - 用途: actions/checkout@v4
-      - 名字: 设置 Python
-用途: actions/setup-python@v5
-与:
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 设置Python
+        uses: actions/setup-python@v5
+        with:
           python-version: "3.11"
-查询为空-查询名字: 安装依赖项
-跑: |
-以超级用户身份更新软件包列表：“sudo apt updateyou”
-sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
-pip3 install buildozer cython==0.29.36
-      - 名字: 建立 APK
-跑: Buildozer-v android调试
-      - 名字: 上载 APK
-用途: actions/upload-artifact@v4
-与:
-名字: apk-file
-路径: bin/*.apk
+
+      - name: 安装依赖
+        run: |
+          sudo apt update
+          sudo apt install -y git unzip openjdk-17-jdk python3-pip autoconf libtool
+          pip3 install buildozer cython==0.29.36
+
+      - name: 编译APK
+        run: buildozer android debug deploy run
+
+      - name: 上传APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk-file
+          path: bin/*.apk
